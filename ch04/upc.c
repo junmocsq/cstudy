@@ -17,6 +17,8 @@ int main()
     long long d;
     d = a * 1e+10 + b * 1e+5 + c;
     int sum1, sum2;
+    sum1 = 0;
+    sum2 = 0;
     for (int i = 0; i < 11; i++)
     {
         if (i % 2 == 0)
