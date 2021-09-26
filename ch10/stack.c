@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define STACK_SIZE 100
 int contents[STACK_SIZE];
@@ -40,4 +41,5 @@ int pop(void)
         stack_underflow();
     else
         return contents[--top];
+    return 0;
 }
