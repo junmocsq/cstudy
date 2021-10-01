@@ -3,14 +3,14 @@
 #include <stdbool.h>
 
 void func_p_10_1(void);
-void func_p_10_5(void);
+void func_p_10_6(void);
 void func_p_10_7(void);
 
 // cc exercise10.c&& ./a.out
 int main()
 {
     // func_p_10_1();
-    // func_p_10_5();
+    // func_p_10_6();
     func_p_10_7();
     return 0;
 }
@@ -47,7 +47,7 @@ void func_p_10_1(void)
     }
 }
 
-void func_p_10_5(void)
+void func_p_10_6(void)
 {
 
     char ch;

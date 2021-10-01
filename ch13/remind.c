@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #define MAX_REMIND 50
 #define MSG_LEN 60
 
@@ -16,6 +17,46 @@ int read_line(char *str, int n)
     return i;
 }
 
+bool remaind_hour(char *time_str, int *minutes)
+{
+    int hour, minute;
+    printf("Enter 24-hour time: ");
+    scanf("%d :%d", &hour, &minute);
+    sprintf(time_str, "%d:%d", hour, minute);
+    *minutes = hour * 60 + minute;
+    return true;
+}
+
+bool remaind_day(char *day_str, int *day)
+{
+
+    printf("Enter day and reminder: ");
+    scanf("%2d", day);
+    if (*day < 0 || *day > 31)
+    {
+        printf("day is error\n");
+        return false;
+    }
+
+    sprintf(day_str, "%2d", *day);
+    return true;
+}
+
+bool remaind_date(char *time_str, int *days)
+{
+    int months[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int month, day;
+    printf("Enter an date(xx-xx): ");
+    scanf("%2d -%2d", &month, &day);
+    sprintf(time_str, "%d-%d", month, day);
+    *days = 0;
+    for (int i = 0; i < month - 1; i++)
+    {
+        *days += months[i];
+    }
+    *days += day;
+    return true;
+}
 int main(void)
 {
     char reminders[MAX_REMIND][MSG_LEN + 3];
@@ -30,14 +71,11 @@ int main(void)
             break;
         }
 
-        printf("Enter day and reminder: ");
-        scanf("%2d", &day);
+        remaind_date(day_str, &day);
         if (day == 0)
         {
             break;
         }
-
-        sprintf(day_str, "%2d", day);
         read_line(msg_str, MSG_LEN);
 
         for (i = 0; i < num_remind; i++)
