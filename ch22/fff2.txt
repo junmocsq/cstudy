@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(void)
+{
+
+    FILE *tmpptr = tmpfile();
+    fclose(tmpptr);
+    // remove(tmpptr);
+    fprintf(stderr, "junmocsq err:%s\n", "mmm");
+    printf("%a\n", 17.625);
+    char abc[10];
+    FILE *f1 = fopen("fff1.txt","r+");
+    FILE *f2 = fopen("fff1.txt","w+");
+    
+    while (!feof(f1))
+    {
+        fgets(abc,10,f1);
+        fputs(abc,f2);
+    }
+    
+    // char abc[10];
+    // fgets(abc, 10, stdin);
+    // printf("%s %c\n", abc, abc[9]);
+    fclose(f1);
+    fclose(f2);
+    return 0;
+}
