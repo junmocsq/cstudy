@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include <ctype.h>
 #define N 10
 
 void func_22_4();
@@ -9,6 +11,16 @@ void func_22_13();
 void func_22_14();
 void func_22_15();
 void func_22_16();
+
+void func_p_22_1();
+void func_p_22_2();
+void func_p_22_3();
+void func_p_22_4();
+void func_p_22_5();
+void func_p_22_6();
+void func_p_22_7();
+void func_p_22_8();
+
 int main()
 {
     func_22_4();
@@ -19,6 +31,14 @@ int main()
     func_22_15();
     func_22_16();
 
+    func_p_22_1();
+    // func_p_22_2();
+    func_p_22_3();
+    func_p_22_4();
+    func_p_22_5();
+    func_p_22_6();
+    func_p_22_7();
+    func_p_22_8();
     return 0;
 }
 
@@ -217,3 +237,122 @@ void func_22_16()
     char sales_rank[1024];
     get_sales_rank(sales_rank, 1024);
 }
+
+void canopen(int n_values, ...)
+{
+    va_list vlist;
+    va_start(vlist, n_values);
+    char *temp;
+    FILE *fp;
+    for (int i = 0; i < n_values; i++)
+    {
+        temp = va_arg(vlist, char *);
+        if ((fp = fopen(temp, "r")) != NULL)
+        {
+            printf("%s can be opened!\n", temp);
+            fclose(fp);
+        }
+        else
+        {
+            printf("%s can't be opened!\n", temp);
+            exit(EXIT_FAILURE);
+        }
+    }
+    va_end(vlist);
+}
+void func_p_22_1()
+{
+    canopen(3, "fff.txt", "fff1.txt", "fff2.txt");
+}
+void func_p_22_2()
+{
+    char s[1024];
+    int ch;
+    int i = 0;
+    while ((ch = getchar()) != '\n' && ch != EOF)
+    {
+        s[i++] = toupper(ch);
+    }
+    s[i] = '\0';
+    fprintf(stdout, "%s\n", s);
+}
+
+void fcat(int n_values, ...)
+{
+    va_list vlist;
+    va_start(vlist, n_values);
+    char *temp;
+    FILE *fp;
+    char read[N];
+    for (int i = 0; i < n_values; i++)
+    {
+        temp = va_arg(vlist, char *);
+        if ((fp = fopen(temp, "r")) != NULL)
+        {
+            printf("%s can be opened!\n", temp);
+            while (fgets(read, N, fp) != NULL)
+            {
+                fprintf(stdout, "%s", read);
+            }
+            fclose(fp);
+        }
+        else
+        {
+            printf("%s can't be opened!\n", temp);
+        }
+    }
+    va_end(vlist);
+}
+void func_p_22_3()
+{
+    fcat(3, "fff1.txt", "fff2.txt", "foo.txt");
+}
+
+void count_prog(char *name, int *ch_num, int *word_num, int *line_num)
+{
+    *ch_num = 0;
+    *word_num = 0;
+    *line_num = 0;
+    FILE *fp;
+    int ch;
+    int is_word_start = 0;
+    if ((fp = fopen(name, "r")) != NULL)
+    {
+        while ((ch = fgetc(fp)) != EOF)
+        {
+            (*ch_num)++;
+            if (isspace(ch))
+            {
+                is_word_start = 1;
+            }
+            else if (is_word_start == 1)
+            {
+                (*word_num)++;
+                is_word_start = 0;
+            }
+            if (ch == '\n')
+            {
+                (*line_num)++;
+            }
+        }
+        if (ch != '\n')
+        { // 如果最后一行没有换行符，+1
+            (*line_num)++;
+        }
+        fclose(fp);
+    }
+    else
+    {
+        printf("%s can't be opened!\n", name);
+    }
+}
+void func_p_22_4()
+{
+    int ch_num, word_num, line_num;
+    count_prog("fff1.txt", &ch_num, &word_num, &line_num);
+    printf("char: %d, word: %d, line: %d\n", ch_num, word_num, line_num);
+}
+void func_p_22_5() {}
+void func_p_22_6() {}
+void func_p_22_7() {}
+void func_p_22_8() {}
