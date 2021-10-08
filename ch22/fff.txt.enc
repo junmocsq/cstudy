@@ -1,0 +1,29 @@
+#lqfoxgh <vwglr.k>
+#lqfoxgh <vwgole.k>
+#lqfoxgh <wlph.k>
+
+lqw pdlq(yrlg)
+{
+
+    ILOH *wpsswu = wpsiloh();
+    iforvh(wpsswu);
+    // uhpryh(wpsswu);
+    isulqwi(vwghuu, "mxqprfvt huu:%v\q", "ppp");
+    sulqwi("%d\q", 17.625);
+    fkdu def[10];
+    ILOH *i1 = irshq("iii1.waw","u+");
+    ILOH *i2 = irshq("iii1.waw","z+");
+    
+    zkloh (!ihri(i1))
+    {
+        ijhwv(def,10,i1);
+        isxwv(def,i2);
+    }
+    
+    // fkdu def[10];
+    // ijhwv(def, 10, vwglq);
+    // sulqwi("%v %f\q", def, def[9]);
+    iforvh(i1);
+    iforvh(i2);
+    uhwxuq 0;
+}

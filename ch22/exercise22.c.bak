@@ -799,19 +799,7 @@ void func_p_22_17()
     char *filename = "f22_17.txt";
     format_phone(filename);
 }
-void func_p_22_18() {
-    // TODO
-    FILE *f;
-    if ((f = fopen(filename, "rb")) == NULL)
-    {
-        printf("open read file %s failed\n", filename);
-        exit(EXIT_FAILURE);
-    }
-    int ch;
-    int max,min,mid;
-    fclose(f);
-
-}
+void func_p_22_18() {}
 void unix2windows(char *filename)
 {
     FILE *f, *ftemp;
@@ -892,10 +880,8 @@ void windows2unix(char *filename)
     fclose(f);
     fclose(ftemp);
 }
-void func_p_22_19()
-{
-    // unix \n
-    // windows \r\n
+void func_p_22_19() {
+    
     unix2windows("exercise22.c.bak");
     windows2unix("exercise22.c.bak");
 }
